@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Safar-e-Noor Travels — Umrah Packages from Pakistan</title>
+<meta name="description" content="Umrah packages to Makkah and Madinah from Karachi, Lahore and Islamabad. Prototype.">
+<link rel="preload" as="image" href="img/hero_makkah.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700;800&family=Gilda+Display&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#efdcc4; --ink:#1b1a17; --muted:#5e5448; --light:#8c8073;
+  --gold:#c9a24a; --emerald:#0f5c4a; --wa:#25d366; --heart:#ff4d5e;
+  --ease:cubic-bezier(.65,0,.35,1); --out:cubic-bezier(.16,1,.3,1);
+  --pad:clamp(20px,9.5vw,170px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--sand)}
+body{font-family:Urbanist,system-ui,sans-serif;color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  background:linear-gradient(180deg,#efdcc4 0,#efdcc4 115vh,#f5e8d6 175vh,#faf3ea 100%)}
+button{font:inherit;color:inherit;background:none;border:0}
+a{color:inherit;text-decoration:none}
+.serif{font-family:'Gilda Display',serif;font-weight:400}
+.ar{font-family:Amiri,serif}
+.ph{background:linear-gradient(135deg,#e9cfae,#e7b9a8)!important;position:relative}
+.ph::before{content:attr(data-ph);position:absolute;left:10px;bottom:8px;font-size:11px;color:var(--light)}
+
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* cursor */
+@media (hover:hover){*{cursor:none!important}}
+#cur{position:fixed;left:0;top:0;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:rgba(62,52,40,.55);
+  pointer-events:none;z-index:9999;transition:width .25s var(--out),height .25s var(--out),margin .25s var(--out),background .25s,border .25s}
+#cur.hov{width:38px;height:38px;margin:-19px 0 0 -19px;background:rgba(62,52,40,.35)}
+#cur.down{width:44px;height:44px;margin:-22px 0 0 -22px;background:transparent;border:5px solid rgba(20,16,18,.9)}
+.rec #cur{width:50px;height:50px;margin:-25px 0 0 -25px}
+.rec #cur.hov{width:58px;height:58px;margin:-29px 0 0 -29px}
+.rec #cur.down{width:62px;height:62px;margin:-31px 0 0 -31px;border-width:7px}
+@media (hover:none){#cur{display:none}}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto;height:74px;padding:0 var(--pad);display:flex;align-items:center;z-index:50;color:rgba(255,255,255,.92);
+  border-bottom:1px solid rgba(255,255,255,.28);transition:background .5s,color .5s,border-color .5s}
+nav.solid{background:rgba(239,220,196,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--ink);border-color:rgba(27,26,23,.08)}
+.logo{display:flex;align-items:center;gap:9px;font-weight:300;font-size:26px;white-space:nowrap}
+.logo svg{width:26px;height:26px;color:var(--gold)}
+.vdiv{width:1px;height:42px;background:currentColor;opacity:.45;margin:0 28px}
+.small{font-size:12.5px;display:flex;align-items:center;gap:5px}
+.links{display:flex;gap:44px;margin:0 auto;font-size:14.5px}
+.links a{position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .45s var(--out)}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+.right{display:flex;align-items:center;gap:20px;font-size:14px;margin-left:auto}
+.links+.right{margin-left:0}
+.pill{display:flex;align-items:center;gap:10px;border:1.5px solid currentColor;border-radius:9px;padding:5px 6px 5px 10px}
+.pill .u{width:22px;height:22px;border-radius:50%;background:currentColor;display:grid;place-items:center}
+.pill .u svg{color:var(--ink);width:13px}
+nav.solid .pill .u svg{color:#fff}
+
+/* hero */
+.hero{position:relative;height:100vh;min-height:680px}
+.clip{position:absolute;inset:0;overflow:hidden}
+.stack{position:absolute;inset:0;will-change:transform}
+.slide{position:absolute;inset:0;visibility:hidden}
+.slide.live,.slide.in{visibility:visible}
+.slide.in{z-index:3}.slide.live{z-index:2}
+.media{position:absolute;inset:-3%;background-size:cover;background-repeat:no-repeat;transform:scale(1.04);will-change:transform}
+.media video{width:100%;height:100%;object-fit:cover}
+.slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(70,52,40,.45) 0%,rgba(70,52,40,.08) 26%,transparent 46%);pointer-events:none}
+.title{position:absolute;z-index:2;left:2.6vw;top:calc(74px + 3.2vh);font-weight:700;text-transform:uppercase;line-height:.9;white-space:nowrap;font-size:7.2vw;letter-spacing:-.01em}
+.title.big{left:7vw;top:calc(74px + 5vh);font-size:9.6vw;line-height:.95}
+.title .arl{display:block;font-size:clamp(16px,1.6vw,24px);font-weight:400;color:rgba(255,255,255,.85);text-transform:none;margin:0 0 .6vw .3vw;line-height:1.4;overflow:hidden}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.04em}
+.w>span,.arl>span{display:inline-block;transform:translateY(105%);transition:transform 1.15s var(--out)}
+.w>span{background:linear-gradient(180deg,rgba(255,255,255,.97) 0%,rgba(255,255,255,.86) 36%,rgba(255,255,255,.16) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ready .w>span,.ready .arl>span{transform:none}
+
+.mist{position:absolute;top:-10%;bottom:-10%;left:0;width:34vw;z-index:4;pointer-events:none;opacity:0;filter:blur(10px);will-change:transform,opacity;
+  background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(255,240,222,.75),transparent 70%)}
+
+/* blend on the containers: their transforms make them isolated groups, so a child's screen blend would only see transparency */
+.bank{position:absolute;left:-4%;right:-4%;bottom:-6%;height:78%;z-index:7;pointer-events:none;will-change:transform;transform-origin:50% 100%;mix-blend-mode:screen}
+.cl{position:absolute;inset:0;background-size:cover;background-position:center bottom;mix-blend-mode:screen;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 38%);mask-image:linear-gradient(180deg,transparent 0,#000 38%)}
+.cl.a{animation:drA 26s ease-in-out infinite alternate}
+.cl.b{transform:scaleX(-1);opacity:.85;animation:drB 34s ease-in-out infinite alternate}
+@keyframes drA{from{transform:translateX(-2.5%)}to{transform:translateX(2.5%)}}
+@keyframes drB{from{transform:scaleX(-1) translate(-3%,0)}to{transform:scaleX(-1) translate(3%,4%)}}
+.off .cl{animation-play-state:paused}
+.topcl{position:absolute;left:-4%;right:-4%;top:-30%;height:80%;z-index:8;opacity:0;pointer-events:none;transform:scaleY(-1);mix-blend-mode:screen}
+.fade{position:absolute;left:0;right:0;bottom:0;height:46%;z-index:9;pointer-events:none;
+  background:linear-gradient(180deg,rgba(239,220,196,0) 0%,rgba(239,220,196,.45) 45%,rgba(239,220,196,.92) 82%,#efdcc4 100%)}
+
+/* rail */
+.rail{position:absolute;inset:0;z-index:10;pointer-events:none;will-change:transform,opacity}
+.thumb{position:absolute;border-radius:50%;background-size:cover;background-position:center;pointer-events:auto;
+  border:3px solid rgba(255,255,255,.92);box-shadow:0 10px 26px rgba(60,30,30,.28);transform:scale(0);
+  transition:top .9s var(--ease),left .9s var(--ease),width .9s var(--ease),height .9s var(--ease),transform .5s var(--out),box-shadow .4s}
+.ready .thumb{transform:scale(1)}
+.ready .thumb:hover{transform:scale(1.07);box-shadow:0 16px 36px rgba(60,30,30,.38)}
+.thumb.act::after{content:"";position:absolute;inset:-12px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55)}
+.ring{position:absolute;left:0;top:0;border-radius:50%;border:1.6px solid rgba(255,255,255,.5);opacity:0;
+  transition:transform .9s var(--ease),opacity 1.2s}
+.ready .ring{opacity:1}
+.conn{position:absolute;height:3px;border-radius:3px;background:#fff;transform-origin:right center;transform:scaleX(0);transition:transform .5s var(--out)}
+.cap{position:absolute;color:#fff;display:flex;gap:16px;align-items:flex-start;transform:translateY(-50%)}
+.cap .bar{width:3px;border-radius:3px;background:#fff;flex:none;transform-origin:top;transform:scaleY(0);transition:transform .6s var(--out)}
+.cap .txt{clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--out)}
+.cap h3{font-weight:300;font-size:clamp(26px,2.75vw,40px);text-shadow:0 2px 18px rgba(0,0,0,.25);line-height:1.1;margin-bottom:8px;white-space:nowrap}
+.cap p{font-size:clamp(12px,1vw,14.5px);opacity:.88;max-width:250px;line-height:1.5;text-shadow:0 1px 10px rgba(0,0,0,.3)}
+.rail.show .conn{transform:scaleX(1)}
+.rail.show .bar{transform:scaleY(1)}
+.rail.show .txt{clip-path:inset(0 0 0 0)}
+
+/* search */
+.search{position:absolute;left:50%;bottom:calc(20vh + 2px);width:min(900px,calc(100% - 40px));height:90px;border-radius:26px;z-index:30;
+  background:rgba(255,255,255,.93);box-shadow:0 18px 60px rgba(120,70,60,.16);display:grid;grid-template-columns:1.35fr 1fr 1fr 1fr auto;align-items:center;
+  padding:0 16px 0 9px;gap:4px;transform:translate(-50%,30px);opacity:0;transition:transform 1s var(--out),opacity 1s}
+.ready .search{transform:translate(-50%,0);opacity:1}
+.field{height:72px;border-radius:14px;padding:0 16px;display:flex;flex-direction:column;justify-content:center;text-align:left;transition:background .3s,box-shadow .3s;min-width:0}
+.field:hover,.field.on{background:#fff;box-shadow:0 8px 24px rgba(120,80,70,.14)}
+.field .l{display:flex;align-items:center;gap:8px;font-size:21px;font-weight:500;white-space:nowrap}
+.field .l svg{width:16px;height:16px;flex:none}
+.field .s{font-size:13px;color:var(--light);margin-top:3px;padding-left:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.send{width:40px;height:40px;border-radius:11px;background:#111;color:#fff;display:grid;place-items:center;transition:transform .3s var(--out)}
+.send:hover{transform:scale(1.1) rotate(-8deg)}
+.send svg{width:18px}
+.pop{position:absolute;top:calc(100% + 12px);background:#fff;border-radius:18px;box-shadow:0 30px 80px rgba(80,50,40,.22);padding:18px;
+  opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .3s,transform .4s var(--out)}
+.pop.open{opacity:1;transform:none;pointer-events:auto}
+#popCity{left:9px;width:240px;padding:8px}
+#popCity button{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:10px;font-size:15px}
+#popCity button:hover,#popCity button.sel{background:#f5ebdd}
+#popCal{left:28%;width:290px}
+.calh{display:flex;align-items:center;justify-content:space-between;font-weight:600;margin-bottom:10px}
+.calh button{width:30px;height:30px;border-radius:8px;font-size:18px}
+.calh button:hover{background:#f5ebdd}
+.calh button:disabled{opacity:.3}
+.cal{display:grid;grid-template-columns:repeat(7,34px);gap:2px 3px;font-size:13px;text-align:center}
+.cal .dn{color:var(--light);font-size:11.5px;height:24px}
+.cal button{height:34px;border-radius:9px}
+.cal button:hover:not(:disabled){background:#f5ebdd}
+.cal button:disabled{color:#cfc6bc}
+.cal button.band{background:#f6e6d2;border-radius:0}
+.cal button.end{background:#111;color:#fff}
+#popPax{right:60px;width:290px}
+.row{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.row+.row{border-top:1px solid #f0e8de}
+.row b{font-weight:600;display:block}.row small{color:var(--light)}
+.step{display:flex;align-items:center;gap:12px}
+.step button{width:30px;height:30px;border-radius:50%;border:1.4px solid #d8cfc4;font-size:16px;line-height:1}
+.step button:hover{border-color:var(--ink)}
+.step span{min-width:16px;text-align:center;font-weight:600}
+
+/* packages */
+.pk{position:relative;z-index:20;margin-top:-17vh;padding:0 var(--pad) 90px}
+.pkh{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:28px}
+.pkh .ar{font-size:20px;color:var(--muted);display:block}
+.pkh h2{font-size:clamp(26px,2.45vw,36px)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1.4px solid var(--ink);border-radius:20px;padding:7px 16px;font-size:13.5px;transition:background .3s,color .3s}
+.chip:hover,.chip.on{background:var(--ink);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.2vw,30px)}
+.card{position:relative;aspect-ratio:203/268;border-radius:12px;overflow:hidden;box-shadow:0 12px 30px rgba(110,60,50,.16);color:#fff;text-align:left;
+  opacity:0;transform:translateY(40px);transition:opacity .8s var(--out),transform .8s var(--out),box-shadow .5s}
+.card.vis{opacity:1;transform:none}
+.card.vis:hover{transform:translateY(-6px);box-shadow:0 22px 44px rgba(110,60,50,.26)}
+.card.hide{display:none}
+.card.match{box-shadow:0 0 0 3px var(--gold),0 22px 44px rgba(110,60,50,.26)}
+.card .img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s var(--out)}
+.card:hover .img{transform:scale(1.07)}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(20,14,10,.78) 100%);pointer-events:none}
+.price{position:absolute;left:12px;top:12px;z-index:2;background:rgba(255,255,255,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  color:var(--ink);border-radius:6px;padding:6px 10px;font-size:13.5px;font-weight:600}
+.price i{font-style:normal;opacity:.6;font-weight:400}
+.heart{position:absolute;right:12px;top:12px;z-index:3;width:30px;height:30px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;transition:transform .3s var(--out)}
+.heart svg{width:15px}
+.heart.on{color:var(--heart);animation:pop .4s var(--out)}
+.heart.on svg{fill:currentColor}
+@keyframes pop{50%{transform:scale(1.35)}}
+.info{position:absolute;left:16px;right:16px;bottom:16px;z-index:2}
+.info h4{font-weight:600;font-size:16px;margin-bottom:5px}
+.info .d{font-size:12.5px;opacity:.9;margin-bottom:7px}
+.info .m{display:flex;align-items:center;gap:8px;font-size:12px}
+.stars{color:var(--gold);letter-spacing:1px}
+.dist{background:rgba(255,255,255,.18);backdrop-filter:blur(4px);border-radius:20px;padding:2px 8px}
+
+/* detail */
+#detail{position:fixed;inset:0;z-index:40;overflow-y:auto;background:#fff;
+  opacity:0;pointer-events:none;transition:opacity .55s}
+#detail.open{opacity:1;pointer-events:auto}
+.dwrap{padding:100px var(--pad) 80px;background:linear-gradient(180deg,var(--sand) 0,var(--sand) 290px,#fff 290px)}
+#packages{scroll-margin-top:60px}
+.crumb{font-size:12.5px;margin-bottom:22px;color:var(--ink)}
+.crumb button{text-decoration:underline;text-underline-offset:3px}
+.crumb span{color:var(--light)}
+.dgrid{display:grid;grid-template-columns:1.18fr 1fr;gap:clamp(24px,4vw,64px);align-items:start}
+.rise{opacity:0;transform:translateY(26px);transition:opacity .7s var(--out),transform .7s var(--out)}
+#detail.open .rise{opacity:1;transform:none}
+.mainimg{position:relative;aspect-ratio:512/445;border-radius:10px;overflow:hidden;background-size:cover;background-position:center;opacity:0}
+.mainimg.landed{opacity:1}
+.th3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.th3 div{aspect-ratio:1;border-radius:10px;background-size:cover;background-position:center;position:relative;overflow:hidden;transition:transform .4s var(--out),box-shadow .4s}
+.th3 div:hover{transform:translateY(-4px);box-shadow:0 12px 26px rgba(0,0,0,.15)}
+.th3 .more::after{content:"+6";position:absolute;inset:0;background:rgba(20,14,10,.55);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:600}
+.dname{font-size:clamp(28px,2.7vw,38px);line-height:1.15;margin-bottom:8px}
+.guide{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);margin-bottom:22px}
+.guide svg{width:18px;color:var(--gold)}
+.stay{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#faf5ee;border-radius:12px;margin-bottom:8px;font-size:14px}
+.stay .ic{width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center;color:var(--emerald);flex:none}
+.stay .ic svg{width:17px}
+.stay b{font-weight:600}
+.stay .dist{background:#efe3d2;color:var(--ink);margin-left:auto;font-size:12px;white-space:nowrap}
+.dsec{font-size:22px;margin:22px 0 8px}
+.about{font-size:14.5px;line-height:1.7;color:var(--muted)}
+.book{background:#fff;border-radius:18px;box-shadow:0 18px 50px rgba(80,50,40,.14);padding:22px;margin-top:24px}
+.bp{font-size:26px;font-weight:700}.bp i{font-style:normal;font-size:14px;font-weight:400;color:var(--light)}
+.seg{display:flex;background:#f4efe8;border-radius:12px;padding:4px;margin:14px 0}
+.seg button{flex:1;padding:9px;border-radius:9px;font-size:13.5px;font-weight:500}
+.seg button.on{background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+.bbox{background:#f6f4f1;border-radius:12px;padding:12px 14px;font-size:13px}
+.bbox label{display:block;color:var(--light);margin-bottom:6px}
+.bbox select{font:inherit;font-size:14px;font-weight:600;border:0;background:transparent;width:100%;outline:none}
+.dates{display:flex;flex-wrap:wrap;gap:6px}
+.dates button{border:1.3px solid #d8cfc4;border-radius:20px;padding:5px 11px;font-size:12.5px}
+.dates button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.bbox+.bbox{margin-top:8px}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:14px 2px;font-size:14px;color:var(--muted)}
+.total b{font-size:20px;color:var(--ink)}
+.wabtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--wa);color:#fff;border-radius:40px;padding:14px;font-weight:700;font-size:15px;transition:transform .3s var(--out),box-shadow .3s}
+.wabtn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(37,211,102,.35)}
+.wabtn svg{width:20px}
+.note{text-align:center;font-size:11.5px;color:var(--light);margin-top:8px}
+.rate{display:flex;align-items:center;gap:14px;border-top:1px solid #eee5da;border-bottom:1px solid #eee5da;padding:16px 0;margin-top:24px;flex-wrap:wrap}
+.rate b{font-size:22px}.rate small{color:var(--light)}
+.av{display:flex}.av span{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;border:2px solid #fff;margin-left:-10px}
+.av span:first-child{margin-left:0}
+.outline{border:1.4px solid var(--ink);border-radius:20px;padding:7px 16px;font-size:13px;margin-left:auto}
+.outline:hover{background:var(--ink);color:#fff}
+.inc{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.inc div{display:flex;align-items:center;gap:10px;font-size:13.5px}
+.inc svg{width:20px;color:var(--emerald);flex:none}
+.similar{margin-top:70px}
+.similar h2{font-size:clamp(24px,2.2vw,32px);margin-bottom:22px}
+.flight{position:fixed;z-index:45;background-size:cover;background-position:center;pointer-events:none}
+
+/* whatsapp + footer */
+.fab{position:fixed;right:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 10px 28px rgba(37,211,102,.4)}
+.fab svg{width:30px}
+.fab::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:pulse 3s infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}60%,100%{transform:scale(1.6);opacity:0}}
+.fab .tip{position:absolute;right:70px;white-space:nowrap;background:var(--ink);color:#fff;font-size:12.5px;padding:7px 12px;border-radius:8px;opacity:0;transform:translateX(6px);transition:.3s;pointer-events:none}
+.fab:hover .tip{opacity:1;transform:none}
+footer{padding:50px var(--pad) 40px;border-top:1px solid rgba(27,26,23,.08);display:flex;flex-wrap:wrap;gap:24px 50px;align-items:center;font-size:13.5px;color:var(--muted)}
+footer .logo{color:var(--ink);font-size:22px}
+footer .fl{display:flex;gap:22px}
+footer .copy{flex-basis:100%;font-size:12px;color:var(--light)}
+
+/* responsive */
+@media (max-width:1240px){.phone{display:none}}
+@media (max-width:1100px){.links{display:none}.links+.right{margin-left:auto}}
+@media (max-width:1000px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .dgrid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .vdiv,.small,.globe{display:none}
+  nav .logo{font-size:21px}
+  .title,.title.big{white-space:normal;width:80vw;font-size:13.5vw;left:6vw}
+  .cap,.conn{display:none}
+  .search{height:auto;grid-template-columns:1fr 1fr;padding:8px;bottom:16vh;gap:2px}
+  .field{height:62px;padding:0 10px}
+  .field .l{font-size:16px}.field .s{padding-left:0}
+  .send{grid-column:1/-1;width:100%;margin-top:4px}
+  #popCal,#popPax,#popCity{left:0;right:0;margin:auto;width:min(290px,100%)}
+  .pk{margin-top:-8vh;padding-top:120px}
+  .grid{grid-template-columns:1fr}
+  .inc{grid-template-columns:repeat(2,1fr)}
+}
+@media (pointer:coarse){.step button,.heart,.calh button{width:44px;height:44px}.chip{padding:12px 18px}}
+@media (prefers-reduced-motion:reduce){.cl.a,.cl.b,.fab::before{animation:none}}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+
+<nav id="nav">
+  <button class="logo" id="logo" aria-label="Safar-e-Noor home">
+    <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 27V14a8 8 0 0 1 16 0v13"/><path d="M17.5 8.5a4 4 0 1 1-4-3.6 3.2 3.2 0 1 0 4 3.6z" fill="currentColor" stroke="none"/></svg>
+    Safar-e-Noor
+  </button>
+  <span class="vdiv"></span>
+  <span class="small">Pilgrims <svg width="9" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l4 4 4-4"/></svg></span>
+  <div class="links"><a href="#packages">Packages</a><a href="#packages">Ziyarat</a><a href="#contact">Contact Us</a></div>
+  <div class="right">
+    <a class="phone" href="tel:+923001234567">+92 300 1234567</a>
+    <svg class="globe" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
+    <button class="pill" aria-label="Account menu">
+      <svg width="16" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1h14M1 6h14M1 11h14"/></svg>
+      <span class="u"><svg viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="5.5" r="3"/><path d="M2 15c.6-3.4 3-5 6-5s5.4 1.6 6 5z"/></svg></span>
+    </button>
+  </div>
+</nav>
+
+<header class="hero" id="hero">
+  <h1 class="sr">Safar-e-Noor Travels: Umrah packages to Makkah and Madinah from Pakistan</h1>
+  <div class="clip">
+    <div class="stack" id="stack"></div>
+    <div class="mist" id="mist"></div>
+    <div class="bank" id="bank"><div class="cl b"></div><div class="cl a"></div></div>
+    <div class="topcl" id="topcl"><div class="cl"></div></div>
+    <div class="fade"></div>
+    <div class="rail" id="rail">
+      <span class="ring" id="r1"></span><span class="ring" id="r2"></span>
+      <span class="conn" id="conn"></span>
+      <div class="cap" id="cap"><span class="bar"></span><div class="txt"><h3 id="capH"></h3><p id="capP"></p></div></div>
+    </div>
+  </div>
+
+  <div class="search" id="search">
+    <button class="field" data-pop="popCity" id="fCity"><span class="l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 13.5l19-8-5 15-4.5-5.5z M12 15l9.5-9.5"/></svg><span id="cityL">Karachi</span></span><span class="s">Departure city</span></button>
+    <button class="field on" data-pop="popCal" id="fDep"><span class="l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Departure</span><span class="s" id="depS">Add date</span></button>
+    <button class="field" data-pop="popCal" id="fRet"><span class="l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Return</span><span class="s" id="retS">Add date</span></button>
+    <button class="field" data-pop="popPax" id="fPax"><span class="l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.8 3.2-6 6.5-6s5.9 2.2 6.5 6M16 4.8a3.5 3.5 0 0 1 0 6.4M18.5 14.5c1.7.9 2.8 2.8 3 5.5"/></svg>Pilgrims</span><span class="s" id="paxS">Add pilgrims</span></button>
+    <button class="send" id="send" aria-label="Search packages"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg></button>
+
+    <div class="pop" id="popCity" role="listbox" aria-label="Departure city"></div>
+    <div class="pop" id="popCal"><div class="calh"><button id="pm" aria-label="Previous month">‹</button><span id="mon"></span><button id="nm" aria-label="Next month">›</button></div><div class="cal" id="cal"></div></div>
+    <div class="pop" id="popPax"></div>
+  </div>
+</header>
+
+<main class="pk" id="packages">
+  <div class="pkh">
+    <div><span class="ar" lang="ur">عمرہ پیکجز</span><h2 class="serif">Our Umrah Packages</h2></div>
+    <div class="filters" id="filters"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer id="contact">
+  <span class="logo"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 27V14a8 8 0 0 1 16 0v13"/><path d="M17.5 8.5a4 4 0 1 1-4-3.6 3.2 3.2 0 1 0 4 3.6z" fill="currentColor" stroke="none"/></svg>Safar-e-Noor</span>
+  <span>Karachi · Lahore · Islamabad</span>
+  <a href="tel:+923001234567">+92 300 1234567</a>
+  <span class="fl"><a href="#packages">Packages</a><a href="#packages">Ziyarat</a><a href="#contact">Contact</a></span>
+  <span class="copy">© 2026 Safar-e-Noor Travels — prototype. All prices, hotels and contact details are dummy data.</span>
+</footer>
+
+<section id="detail" aria-hidden="true"><div class="dwrap" id="dwrap"></div></section>
+
+<a class="fab" id="fab" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp"><span class="tip">Chat with us</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.200 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.300.5 1.700.6.7.2 1.400.2 1.900.1.6-.1 1.800-.7 2-1.400.2-.7.2-1.300.2-1.400-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2S21.8 6.6 21.8 12 17.4 21.8 12 21.8zM12 .5C5.7.5.5 5.7.5 12c0 2 .5 4 1.5 5.7L.5 23.5l5.9-1.5c1.7.9 3.6 1.4 5.6 1.4 6.3 0 11.5-5.2 11.5-11.5S18.3.5 12 .5z"/></svg></a>
+
+<script>
+/* ===== Config: the only place to edit ===== */
+const WA_NUMBER = '923001234567';           // dummy: +92 300 1234567
+const ASSETS = {
+  // web-sized copies made from the originals in this folder (img/); *_video takes an .mp4 or an animated image (.webp/.gif)
+  hero_makkah:'img/hero_makkah.webp', hero_makkah_video:'img/hero_makkah_motion.webp',
+  hero_madinah:'img/hero_madinah.webp', hero_madinah_video:'img/hero_madinah_motion.webp',
+  hero_journey:'img/hero_journey.webp', hero_journey_video:'img/hero_journey_motion.webp',
+  thumb_kaaba:'img/thumb_kaaba.webp', thumb_dome:'img/thumb_dome.webp', thumb_pilgrims:'img/thumb_pilgrims.webp',
+  card_express:'img/card_express.webp', card_classic:'img/card_classic.webp', card_family:'img/hero_journey.webp',
+  card_premium:'img/card_premium.webp', card_ramadan:'img/card_ramadan.webp', card_private:'img/hero_madinah.webp',
+  card_express_lg:'img/card_express_lg.webp', card_classic_lg:'img/card_classic_lg.webp',
+  card_premium_lg:'img/card_premium_lg.webp', card_ramadan_lg:'img/card_ramadan_lg.webp',
+  detail_room:'img/detail_room.webp', detail_2:'img/thumb_dome.webp', detail_3:'img/thumb_kaaba.webp',
+  cloud:'img/cloud.webp'
+};
+
+const PACKAGES = [
+  {id:'express',name:'Express Umrah',days:10,mk:6,md:3,hm:['Dar Al Sakeena','800 m'],hd:['Noor Al Madinah','500 m'],stars:3,rates:{quad:235000,triple:260000,double:290000},child:185000,infant:85000,cities:['Karachi','Lahore','Islamabad'],dates:['Dec 6','Dec 20','Jan 10'],pos:'center 60%'},
+  {id:'classic',name:'Classic Umrah',days:15,mk:8,md:6,hm:['Al Rawda Plaza','600 m'],hd:['Bab Al Salam Inn','350 m'],stars:4,rates:{quad:295000,triple:335000,double:385000},child:200000,infant:100000,cities:['Karachi','Lahore','Islamabad'],dates:['Dec 13','Jan 3','Jan 24'],pos:'center'},
+  {id:'family',name:'Family Umrah',days:21,mk:12,md:8,hm:['Jabal Noor Suites','500 m'],hd:['Qiblatain Residence','300 m'],stars:4,rates:{quad:330000,triple:375000,double:430000},child:210000,infant:100000,cities:['Karachi','Lahore'],dates:['Dec 18','Jan 15'],pos:'30% center'},
+  {id:'premium',name:'Premium Haram-View',days:15,mk:8,md:6,hm:['Safa Tower Haram-View','100 m'],hd:['Rawdah Front','50 m'],stars:5,rates:{quad:395000,triple:450000,double:530000},child:240000,infant:120000,cities:['Karachi','Islamabad'],dates:['Dec 22','Jan 19'],pos:'30% center'},
+  {id:'ramadan',name:'Ramadan Special',sub:'last 10 nights',days:16,mk:10,md:5,hm:['Safa Tower Haram-View','150 m'],hd:['Al Manar Ladies Gate','200 m'],stars:5,rates:{quad:460000,triple:540000,double:680000},child:250000,infant:125000,cities:['Karachi','Lahore','Islamabad'],dates:['Feb 26, 2027'],pos:'center 40%',extra:'Sehri buffet, ihram and souvenirs included.'},
+  {id:'private',name:'Private Land-Only',sub:'no flight',days:7,mk:3,md:3,hm:['Ajyad Gardens','700 m'],hd:['Taibah Courtyard','400 m'],stars:3,rates:{quad:175000},child:150000,infant:60000,cities:['Karachi','Lahore','Islamabad'],dates:[],pos:'75% center',flat:true}
+];
+const SLIDES = [
+  {media:'hero_makkah',pos:'center 60%',words:['WELCOME','TO','MAKKAH'],ar:'لَبَّيْكَ اللّٰهُمَّ لَبَّيْك',h:'Journey to Makkah',p:'Perform your Umrah with hotels steps from Masjid al-Haram, guided by experienced group leaders'},
+  {media:'hero_madinah',pos:'center 55%',words:['PEACE','OF','MADINAH'],ar:'المدينة المنورة',h:'Stay in Madinah',p:'Peaceful nights near Masjid an-Nabawi, with ziyarat of Quba, Uhud and the holy sites'},
+  {media:'hero_journey',pos:'center 45%',words:['YOUR','UMRAH'],big:true,ar:'عمرة مباركة',h:'Packages for every family',p:'Express, Classic, Family, Premium and Ramadan departures from Karachi, Lahore and Islamabad'}
+];
+const THUMBS = [{a:'thumb_pilgrims',s:2,alt:'Pilgrims walking to the Haram'},{a:'thumb_dome',s:1,alt:'The Green Dome, Madinah'},{a:'thumb_kaaba',s:0,alt:'The Kaaba and tawaf'}]; // top → bottom
+
+/* ===== helpers ===== */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const pkr = n => 'PKR ' + n.toLocaleString('en-US');
+const ease = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function bg(el, id){ const u = ASSETS[id]; if(u) el.style.backgroundImage = `url("${u}")`; else { el.classList.add('ph'); el.dataset.ph = id; } return el; }
+function total(p, sharing, a, c, i){ return a*(p.rates[sharing] ?? p.rates.quad) + c*p.child + i*p.infant; }
+console.assert(total(PACKAGES[0],'quad',2,1,1) === 2*235000+185000+85000, 'total: quad');
+console.assert(total(PACKAGES[5],'double',1,0,0) === 175000, 'total: flat package falls back to quad');
+const ICON = {
+  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20s-7-4.4-9-9.1C1.6 7.4 4 4 7.3 4c2 0 3.4 1.1 4.7 2.7C13.3 5.1 14.7 4 16.7 4 20 4 22.4 7.4 21 10.9 19 15.6 12 20 12 20z"/></svg>',
+  kaaba:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7l8-3 8 3v11l-8 3-8-3z M4 7l8 3 8-3M12 10v11M4 10l8 3 8-3"/></svg>',
+  dome:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 21v-7a7 7 0 0 1 14 0v7zM12 7V3M3 21h18"/></svg>',
+  wa:document.querySelector('.fab svg').outerHTML
+};
+const INC = [['Return Flights','M2.5 13.5l19-8-5 15-4.5-5.5z'],['Umrah Visa','M5 3h14v18H5zM9 8h6M9 12h6M9 16h3'],['Hotels near Haram','M3 21V8l9-5 9 5v13M9 21v-6h6v6'],['AC Transport','M4 16V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10zM4 11h16M7 19v-3M17 19v-3'],['Ziyarat Tours','M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11zM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z'],['Group Leader','M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c.8-4.5 4-6.5 8-6.5s7.2 2 8 6.5']];
+
+/* ===== state ===== */
+const today = new Date(); today.setHours(0,0,0,0);
+const S = {city:'Karachi', dep:null, ret:null, a:2, c:0, i:0, month:new Date(today.getFullYear(), today.getMonth(), 1)};
+const fmt = d => d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+if(location.search.includes('rec')) document.body.classList.add('rec');
+$('#fab').href = `https://wa.me/${WA_NUMBER}?text=` + encodeURIComponent("Assalam-o-Alaikum, I'd like to know about your Umrah packages.");
+
+/* ===== hero slides ===== */
+const stack = $('#stack');
+SLIDES.forEach((s, k) => {
+  const el = document.createElement('div'); el.className = 'slide' + (k === 0 ? ' live' : '');
+  const m = bg(document.createElement('div'), s.media); m.className += ' media'; m.style.backgroundPosition = s.pos;
+  m.setAttribute('role','img'); m.setAttribute('aria-label', s.h);
+  const v = ASSETS[s.media + '_video'];
+  if(v && /\.mp4$/i.test(v)) m.innerHTML = `<video muted loop playsinline preload="auto" poster="${ASSETS[s.media]}" src="${v}"></video>`;
+  const t = document.createElement('h2'); t.className = 'title' + (s.big ? ' big' : '');
+  t.innerHTML = `<span class="arl ar" lang="ar"><span>${s.ar}</span></span>` +
+    s.words.map(w => `<span class="w"><span>${w}</span></span>`).join(s.big ? '<br>' : ' ');
+  t.querySelectorAll('.w>span').forEach((w, j) => w.style.transitionDelay = (j*90) + 'ms');
+  if(k) t.setAttribute('aria-hidden','true');
+  el.append(m, t); stack.append(el);
+});
+const slides = $$('.slide'), medias = $$('.media');
+const vid = k => medias[k].querySelector('video');
+vid(0)?.play().catch(()=>{});
+// animated images play only on the slide being shown, so a phone decodes one at a time; the still stays underneath while it loads
+function motion(k, on){
+  const v = ASSETS[SLIDES[k].media + '_video'], still = ASSETS[SLIDES[k].media];
+  if(!v || /\.mp4$/i.test(v) || reduce) return;
+  medias[k].style.backgroundImage = on ? `url("${v}"), url("${still}")` : `url("${still}")`;
+}
+addEventListener('load', () => motion(cur, true));
+$$('.cl').forEach(c => bg(c, 'cloud'));
+
+/* ===== rail ===== */
+const rail = $('#rail');
+const thumbs = THUMBS.map((t, k) => {
+  const b = bg(document.createElement('button'), t.a); b.className += ' thumb'; b.setAttribute('aria-label', t.alt);
+  b.style.transitionDelay = (350 + k*140) + 'ms';
+  b.onclick = () => go(t.s); rail.append(b); return b;
+});
+let cur = 0;
+function layout(){
+  const vw = innerWidth, hh = $('#hero').offsetHeight, cl = (v, a, b) => Math.min(b, Math.max(a, v));
+  const A = cl(vw*.113, 96, 190), I = cl(vw*.054, 46, 92), G = Math.max(8, vw*.009), cx = vw*.855;
+  let y = 74 + hh*.085, cy = 0;
+  THUMBS.forEach((t, k) => {
+    const s = t.s === cur ? A : I, el = thumbs[k];
+    Object.assign(el.style, {width:s+'px', height:s+'px', left:(cx - s/2)+'px', top:y+'px'});
+    el.classList.toggle('act', t.s === cur);
+    if(t.s === cur) cy = y + s/2;
+    y += s + G;
+  });
+  [['#r1', A/2 + vw*.05], ['#r2', A/2 + vw*.108]].forEach(([id, r]) =>
+    Object.assign($(id).style, {width:2*r+'px', height:2*r+'px', transform:`translate(${cx-r}px,${cy-r}px)`}));
+  const L = Math.max(40, vw*.047), cr = cx - A/2 - vw*.008;
+  Object.assign($('#conn').style, {width:L+'px', left:(cr-L)+'px', top:(cy-1.5)+'px'});
+  const cap = $('#cap'); cap.style.top = cy + 'px'; cap.style.right = (vw - (cr - L - 16)) + 'px';
+  $('#cap .bar').style.height = Math.max(84, vw*.065) + 'px';
+}
+function caption(){ $('#capH').textContent = SLIDES[cur].h; $('#capP').textContent = SLIDES[cur].p; }
+caption(); layout(); addEventListener('resize', layout);
+
+/* ===== wipe + ken burns ===== */
+let busy = false, liveSince = performance.now(), px = 0, py = 0, timer;
+const kb = () => reduce ? 1.04 : 1.04 + Math.min((performance.now() - liveSince)/1000, 12)*.0035;
+function go(n){
+  if(busy || n === cur) return;
+  busy = true; clearTimeout(timer);
+  const from = cur, inEl = slides[n], outEl = slides[from], mi = medias[n], mo = medias[from], startKb = kb();
+  cur = n; layout(); rail.classList.remove('show');
+  setTimeout(() => { caption(); rail.classList.add('show'); }, 650);
+  slides.forEach((s, k) => s.querySelector('h2').toggleAttribute('aria-hidden', k !== n));
+  inEl.classList.add('in'); vid(n)?.play().catch(()=>{}); motion(n, true);
+  const D = reduce ? 300 : 1250, t0 = performance.now(), mist = $('#mist');
+  (function f(now){
+    const t = Math.min(1, (now - t0)/D), p = ease(t), e = p*135;
+    const m = `linear-gradient(to left, #000 ${e-35}%, rgba(0,0,0,.6) ${e-17.5}%, transparent ${e}%)`;
+    inEl.style.webkitMaskImage = inEl.style.maskImage = m;
+    mi.style.transform = `translateX(${2*(1-p)}%) scale(${1.12 - .08*p})`;
+    mo.style.transform = `translateX(${-2*p}%) scale(${startKb + (1.09-startKb)*p})`;
+    mist.style.transform = `translateX(${100 - (e - 17.5) - 17}vw)`;
+    mist.style.opacity = reduce ? 0 : Math.sin(Math.PI*t)*.95;
+    if(t < 1) return requestAnimationFrame(f);
+    inEl.style.webkitMaskImage = inEl.style.maskImage = '';
+    inEl.classList.replace('in','live'); outEl.classList.remove('live');
+    setTimeout(() => { vid(from)?.pause(); motion(from, false); }, 200);
+    liveSince = performance.now(); busy = false; auto();
+  })(t0);
+}
+// the hero only animates while it is on screen (not scrolled away, no package page open), to save phone battery
+const heroOn = () => scrollY < innerHeight && !document.body.style.overflow;
+function auto(){ if(!reduce) timer = setTimeout(() => heroOn() ? go((cur+1) % 3) : auto(), 5200); }
+(function kbLoop(){
+  if(!busy && heroOn()) medias[cur].style.transform = `translate(${px*.6}%, ${py*.5}%) scale(${kb()})`;
+  requestAnimationFrame(kbLoop);
+})();
+addEventListener('pointermove', e => { px = (e.clientX/innerWidth - .5)*2; py = (e.clientY/innerHeight - .5)*2; });
+
+/* ===== scroll ===== */
+const nav = $('#nav'), detail = $('#detail');
+function onScroll(){
+  const y = scrollY, vh = innerHeight;
+  stack.style.transform = `translateY(${y*.42}px)`;
+  $('#bank').style.transform = `translateY(${-y*.38}px) scale(${1 + .35*y/vh})`;
+  const tc = $('#topcl'); tc.style.opacity = Math.min(1, y/(.45*vh)); tc.style.transform = `translateY(${-y*.15}px) scaleY(-1)`;
+  rail.style.transform = `translateY(${y*.2}px)`; rail.style.opacity = Math.max(0, 1 - y/(.5*vh));
+  nav.classList.toggle('solid', y > .3*vh || detail.classList.contains('open'));
+  $('#hero').classList.toggle('off', y > vh || detail.classList.contains('open'));
+}
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+/* ===== search bar ===== */
+const pops = ['popCity','popCal','popPax'];
+function openPop(id){
+  pops.forEach(p => $('#'+p).classList.toggle('open', p === id));
+  $$('.field').forEach(f => f.classList.remove('on'));
+  if(id === 'popCity') $('#fCity').classList.add('on');
+  if(id === 'popPax') $('#fPax').classList.add('on');
+  if(id === 'popCal') (S.dep && !S.ret ? $('#fRet') : $('#fDep')).classList.add('on');
+}
+$$('.field').forEach(f => f.onclick = e => {
+  e.stopPropagation(); const id = f.dataset.pop;
+  if($('#'+id).classList.contains('open') && f.classList.contains('on')) return openPop(null);
+  openPop(id); if(id === 'popCal') renderCal();
+});
+$$('.pop').forEach(p => p.onclick = e => e.stopPropagation());
+document.addEventListener('click', () => openPop(null));
+
+$('#popCity').innerHTML = ['Karachi','Lahore','Islamabad'].map(c => `<button role="option">${c}</button>`).join('');
+$$('#popCity button').forEach(b => b.onclick = () => { S.city = b.textContent; $('#cityL').textContent = S.city; markCity(); openPop('popCal'); renderCal(); });
+function markCity(){ $$('#popCity button').forEach(b => b.classList.toggle('sel', b.textContent === S.city)); }
+markCity();
+
+function renderCal(){
+  const m = S.month, y = m.getFullYear(), mo = m.getMonth();
+  $('#mon').textContent = m.toLocaleDateString('en-US',{month:'long', year:'numeric'});
+  $('#pm').disabled = y === today.getFullYear() && mo === today.getMonth();
+  const lead = (new Date(y, mo, 1).getDay() + 6) % 7, n = new Date(y, mo+1, 0).getDate();
+  let h = ['Mo','Tu','We','Th','Fr','Sa','Su'].map(d => `<span class="dn">${d}</span>`).join('') + '<span></span>'.repeat(lead);
+  for(let d = 1; d <= n; d++){
+    const dt = new Date(y, mo, d), t = +dt;
+    const dis = dt < today || (S.dep && !S.ret && dt <= S.dep);
+    const end = (S.dep && t === +S.dep) || (S.ret && t === +S.ret);
+    const band = S.dep && S.ret && dt > S.dep && dt < S.ret;
+    h += `<button data-t="${t}" ${dis ? 'disabled' : ''} class="${end ? 'end' : band ? 'band' : ''}">${d}</button>`;
+  }
+  $('#cal').innerHTML = h;
+  $$('#cal button').forEach(b => b.onclick = () => {
+    const d = new Date(+b.dataset.t);
+    if(!S.dep || S.ret || d <= S.dep){ S.dep = d; S.ret = null; openPop('popCal'); }
+    else { S.ret = d; openPop('popPax'); }
+    $('#depS').textContent = S.dep ? fmt(S.dep) : 'Add date';
+    $('#retS').textContent = S.ret ? fmt(S.ret) : 'Add date';
+    renderCal();
+  });
+}
+$('#pm').onclick = () => { S.month = new Date(S.month.getFullYear(), S.month.getMonth()-1, 1); renderCal(); };
+$('#nm').onclick = () => { S.month = new Date(S.month.getFullYear(), S.month.getMonth()+1, 1); renderCal(); };
+
+const PAX = [['a','Adults','12+ years',1],['c','Children','2–11 years',0],['i','Infants','Under 2',0]];
+const stepper = () => PAX.map(([k, label, sub, min]) => `<div class="row"><div><b>${label}</b><small>${sub}</small></div><div class="step" data-k="${k}" data-min="${min}"><button aria-label="Fewer ${label}">−</button><span>${S[k]}</span><button aria-label="More ${label}">+</button></div></div>`).join('');
+function bindSteps(root, onChange){
+  root.querySelectorAll('.step').forEach(st => {
+    const k = st.dataset.k, min = +st.dataset.min, [minus, val, plus] = st.children;
+    minus.onclick = () => { S[k] = Math.max(min, S[k]-1); val.textContent = S[k]; onChange(); };
+    plus.onclick = () => { S[k] = Math.min(20, S[k]+1); val.textContent = S[k]; onChange(); };
+  });
+}
+const paxText = () => { const n = S.a + S.c + S.i; return n + (n === 1 ? ' pilgrim' : ' pilgrims'); };
+$('#popPax').innerHTML = stepper();
+bindSteps($('#popPax'), () => $('#paxS').textContent = paxText());
+
+$('#send').onclick = e => {
+  e.stopPropagation(); openPop(null);
+  $('#packages').scrollIntoView({behavior: reduce ? 'auto' : 'smooth'});
+  $$('#grid .card').forEach(c => c.classList.toggle('match', PACKAGES.find(x => x.id === c.dataset.id).cities.includes(S.city)));
+  setTimeout(() => $$('.card.match').forEach(c => c.classList.remove('match')), 2600);
+};
+
+/* ===== package cards ===== */
+function card(p){
+  const el = document.createElement('div');
+  el.className = 'card'; el.dataset.id = p.id; el.tabIndex = 0; el.setAttribute('role','button');
+  el.setAttribute('aria-label', `${p.name}, ${p.days} days, from ${pkr(p.rates.quad)} per person`);
+  el.innerHTML = `<div class="img" role="img" aria-label="${p.name}"></div>
+    <span class="price">from ${pkr(p.rates.quad)} <i>/person</i></span>
+    <button class="heart" aria-label="Save ${p.name}">${ICON.heart}</button>
+    <div class="info"><h4>${p.name}${p.sub ? ` <small style="font-weight:400;opacity:.8">(${p.sub})</small>` : ''}</h4>
+      <div class="d">${p.days} Days · ${p.mk} Makkah / ${p.md} Madinah</div>
+      <div class="m"><span class="stars" aria-label="${p.stars} star hotels">${'★'.repeat(p.stars)}</span><span class="dist">${p.hm[1]} from Haram</span></div></div>`;
+  const img = bg(el.querySelector('.img'), 'card_' + p.id); img.style.backgroundPosition = p.pos;
+  el.querySelector('.heart').onclick = e => { e.stopPropagation(); e.currentTarget.classList.toggle('on'); };
+  el.onclick = () => openDetail(p, img);
+  el.onkeydown = e => { if(e.target === el && (e.key === 'Enter' || e.key === ' ')){ e.preventDefault(); openDetail(p, img); } };
+  // after the entrance, hover lift must be instant rather than staggered
+  el.addEventListener('transitionend', e => { if(e.target === el && e.propertyName === 'opacity') el.style.transitionDelay = '0ms'; });
+  return el;
+}
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } }), {threshold:.12});
+const grid = $('#grid');
+PACKAGES.forEach((p, k) => { const c = card(p); c.style.transitionDelay = (k % 3)*90 + 'ms'; grid.append(c); io.observe(c); });
+
+const FILTERS = [['All', () => true], ['10 Days', p => p.days === 10], ['15 Days', p => p.days === 15], ['21 Days', p => p.days === 21], ['Ramadan', p => p.id === 'ramadan']];
+$('#filters').innerHTML = FILTERS.map(([l], k) => `<button class="chip${k ? '' : ' on'}">${l}</button>`).join('');
+$$('#filters .chip').forEach((b, k) => b.onclick = () => {
+  $$('#filters .chip').forEach(x => x.classList.toggle('on', x === b));
+  $$('#grid .card').forEach(c => c.classList.toggle('hide', !FILTERS[k][1](PACKAGES.find(p => p.id === c.dataset.id))));
+});
+
+/* ===== detail page ===== */
+let D = null; // {p, sharing, city, date}
+function openDetail(p, fromImg){
+  D = {p, sharing:'quad', city: p.cities.includes(S.city) ? S.city : p.cities[0], date: p.dates[0] || ''};
+  const datesTxt = S.dep && S.ret ? `${fmt(S.dep)} – ${fmt(S.ret)}` : 'Choose your dates';
+  const others = PACKAGES.filter(x => x.id !== p.id).slice(0, 3);
+  const stars = '★'.repeat(p.stars);
+  $('#dwrap').innerHTML = `
+    <div class="crumb rise"><button id="home">Home</button> › Umrah Packages › <span>${p.name}</span></div>
+    <div class="dgrid">
+      <div>
+        <div class="mainimg" id="mainimg" role="img" aria-label="${p.name}"><button class="heart" aria-label="Save ${p.name}">${ICON.heart}</button></div>
+        <div class="th3 rise"><div id="d1" role="img" aria-label="Hotel room with Haram view"></div><div id="d2" role="img" aria-label="Masjid an-Nabawi"></div><div id="d3" class="more" role="img" aria-label="The Kaaba, 6 more photos"></div></div>
+      </div>
+      <div>
+        <h1 class="dname serif rise">${p.name}${p.sub ? ` <span style="font-size:.55em;color:var(--light)">(${p.sub})</span>` : ''}</h1>
+        <div class="guide rise"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15 3.5A8.5 8.5 0 1 0 20.5 17 7 7 0 1 1 15 3.5z"/></svg>Guided by Safar-e-Noor group leader · ${p.days} days</div>
+        <div class="rise">
+          <div class="stay"><span class="ic">${ICON.kaaba}</span><span><b>Makkah</b> · ${p.mk} nights · ${p.hm[0]} <span class="stars">${stars}</span></span><span class="dist">${p.hm[1]} from Haram</span></div>
+          <div class="stay"><span class="ic">${ICON.dome}</span><span><b>Madinah</b> · ${p.md} nights · ${p.hd[0]} <span class="stars">${stars}</span></span><span class="dist">${p.hd[1]} from Haram</span></div>
+        </div>
+        <h2 class="dsec serif rise">About this package</h2>
+        <p class="about rise">Land in Jeddah and travel with your group to Makkah, where you perform Umrah together with your group leader. Spend ${p.mk} nights praying in Masjid al-Haram, then travel to Madinah for ${p.md} peaceful nights near Masjid an-Nabawi, with ziyarat of Masjid Quba, Mount Uhud and the Seven Mosques before your return flight from Madinah. ${p.flat ? 'Flights are not included; we arrange visa, hotels and transport around your own tickets.' : ''} ${p.extra || ''}</p>
+        <div class="book rise">
+          <div class="bp" id="bp"></div>
+          ${p.flat ? '<div style="height:14px"></div>' : `<div class="seg" id="seg">${['quad','triple','double'].map(s => `<button data-s="${s}" class="${s==='quad'?'on':''}">${s[0].toUpperCase()+s.slice(1)}</button>`).join('')}</div>`}
+          <div class="bbox"><label for="dcity">Departure city</label><select id="dcity">${p.cities.map(c => `<option${c===D.city?' selected':''}>${c}</option>`).join('')}</select></div>
+          <div class="bbox"><label>Departure date</label>${p.dates.length ? `<div class="dates" id="dates">${p.dates.map((d,k) => `<button class="${k?'':'on'}">${d}</button>`).join('')}</div>` : `<b>${datesTxt}</b>`}</div>
+          <div class="bbox" id="dpax">${stepper()}</div>
+          <div class="total"><span>Estimated total</span><b id="tot"></b></div>
+          <a class="wabtn" id="wa" target="_blank" rel="noopener">${ICON.wa}Book on WhatsApp</a>
+          <p class="note">Prototype — prices are indicative</p>
+        </div>
+        <div class="rate rise"><b>4.9</b><small>(312 reviews)</small><span class="stars">★★★★★</span>
+          <span class="av"><span style="background:var(--emerald)">AK</span><span style="background:var(--gold)">SF</span><span style="background:#c98a86">MR</span></span>
+          <button class="outline">Read reviews</button></div>
+        <h2 class="dsec serif rise">What's included</h2>
+        <div class="inc rise">${INC.map(([l, d], k) => { if(k === 0 && p.flat){ l = 'Flexible Dates'; d = 'M3 5h18v16H3zM3 10h18M8 3v4M16 3v4'; } return `<div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="${d}"/></svg>${l}</div>`; }).join('')}</div>
+      </div>
+    </div>
+    <section class="similar rise"><h2 class="serif">Similar Packages</h2><div class="grid" id="sim"></div></section>`;
+  bg($('#d1'), 'detail_room'); bg($('#d2'), 'detail_2'); bg($('#d3'), 'detail_3');
+  const main = bg($('#mainimg'), 'card_' + p.id); main.style.backgroundPosition = p.pos;
+  const lg = ASSETS['card_' + p.id + '_lg']; // sharper copy loads over the already-cached card image
+  if(lg) main.style.backgroundImage = `url("${lg}"), ${main.style.backgroundImage}`;
+  main.querySelector('.heart').onclick = e => e.currentTarget.classList.toggle('on');
+  $$('#dwrap .rise').forEach((r, k) => r.style.transitionDelay = (250 + k*70) + 'ms');
+  others.forEach(o => { const c = card(o); c.classList.add('vis'); $('#sim').append(c); });
+  $('#home').onclick = closeDetail;
+  $$('#seg button').forEach(b => b.onclick = () => { D.sharing = b.dataset.s; $$('#seg button').forEach(x => x.classList.toggle('on', x === b)); price(); });
+  $('#dcity').onchange = e => { D.city = e.target.value; price(); };
+  $$('#dates button').forEach(b => b.onclick = () => { D.date = b.textContent; $$('#dates button').forEach(x => x.classList.toggle('on', x === b)); price(); });
+  bindSteps($('#dpax'), () => { $('#paxS').textContent = paxText(); price(); });
+  price();
+
+  detail.scrollTop = 0;
+  detail.classList.remove('open'); void detail.offsetWidth; // restart the fade + rise when opening from "Similar"
+  detail.classList.add('open'); detail.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden'; onScroll();
+  fly(fromImg, main);
+}
+function price(){
+  const p = D.p, rate = p.rates[D.sharing] ?? p.rates.quad, t = total(p, D.sharing, S.a, S.c, S.i);
+  $('#bp').innerHTML = `${pkr(rate)} <i>/person</i>`;
+  $('#tot').textContent = pkr(t);
+  const msg = `Assalam-o-Alaikum! I'm interested in the ${p.name} (${p.days} days)${p.flat ? '' : `, ${D.sharing} sharing`}, from ${D.city}, departing ${D.date || (S.dep ? fmt(S.dep) : 'flexible dates')}. Pilgrims: ${S.a} adults, ${S.c} children, ${S.i} infants. Estimated total: ${pkr(t)}.`;
+  $('#wa').href = `https://wa.me/${WA_NUMBER}?text=` + encodeURIComponent(msg);
+}
+function fly(fromEl, toEl){
+  const a = fromEl.getBoundingClientRect();
+  const f = document.createElement('div'); f.className = 'flight';
+  f.style.backgroundImage = fromEl.style.backgroundImage; f.style.backgroundPosition = fromEl.style.backgroundPosition;
+  document.body.append(f);
+  const t0 = performance.now(), dur = reduce ? 1 : 900;
+  (function step(now){
+    const b = toEl.getBoundingClientRect(), t = Math.min(1, (now - t0)/dur), p = ease(t), L = (x, y) => x + (y - x)*p;
+    Object.assign(f.style, {left:L(a.left,b.left)+'px', top:L(a.top,b.top)+'px', width:L(a.width,b.width)+'px', height:L(a.height,b.height)+'px', borderRadius:L(12,10)+'px'});
+    if(t < 1) return requestAnimationFrame(step);
+    toEl.classList.add('landed'); f.remove();
+  })(t0);
+}
+function closeDetail(){
+  detail.classList.remove('open'); detail.setAttribute('aria-hidden','true');
+  document.body.style.overflow = ''; onScroll();
+}
+$('#logo').onclick = () => { if(detail.classList.contains('open')) closeDetail(); else scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); };
+addEventListener('keydown', e => { if(e.key === 'Escape'){ if(detail.classList.contains('open')) closeDetail(); openPop(null); } });
+
+/* ===== cursor ===== */
+const cur$ = $('#cur');
+addEventListener('pointermove', e => { cur$.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`; cur$.classList.toggle('hov', !!e.target.closest('a,button,.card,.thumb,.field,select')); });
+addEventListener('pointerdown', () => cur$.classList.add('down'));
+addEventListener('pointerup', () => cur$.classList.remove('down'));
+
+/* ===== intro ===== */
+setTimeout(() => document.body.classList.add('ready'), 250);
+setTimeout(() => rail.classList.add('show'), 900);
+setTimeout(() => thumbs.forEach(t => t.style.transitionDelay = '0ms'), 1400);
+auto();
+</script>
+</body>
+</html>

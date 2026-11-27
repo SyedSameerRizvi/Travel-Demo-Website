@@ -1,0 +1,5 @@
+# full-size source images and clips (the site uses the optimised copies in img/)
+/*.jpg
+/*.gif
+/umrah-website-prompt.md
+.claude/
