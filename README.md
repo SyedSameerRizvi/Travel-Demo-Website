@@ -36,6 +36,10 @@ The brand, prices, hotels and phone number are all placeholders. The site is a p
 **WhatsApp booking**
 - Builds a ready-to-send message with the package, city, date, pilgrims and estimated total.
 
+**Ziyarat and contact**
+- A Ziyarat section lists the guided visits in Makkah and Madinah.
+- A contact section has WhatsApp and call buttons.
+
 **Imagery**
 - Every image is AI generated and faceless: men in ihram, women in black abaya.
 

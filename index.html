@@ -251,6 +251,21 @@ nav.solid .pill .u svg{color:#fff}
 @keyframes pulse{0%{transform:scale(1);opacity:.8}60%,100%{transform:scale(1.6);opacity:0}}
 .fab .tip{position:absolute;right:70px;white-space:nowrap;background:var(--ink);color:#fff;font-size:12.5px;padding:7px 12px;border-radius:8px;opacity:0;transform:translateX(6px);transition:.3s;pointer-events:none}
 .fab:hover .tip{opacity:1;transform:none}
+.sec{padding:0 var(--pad) 90px}
+.lead{color:var(--muted);font-size:15px;max-width:440px;margin-top:6px}
+.zy{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.zc{display:flex;gap:20px;align-items:flex-start;background:rgba(255,255,255,.55);border-radius:18px;padding:24px}
+.zi{width:76px;height:76px;border-radius:50%;background-size:cover;background-position:center;flex:none}
+.zc h3{font-size:19px;margin-bottom:8px}
+.zc ul{list-style:none;display:grid;gap:7px;color:var(--muted);font-size:14.5px}
+.zc li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:10px;vertical-align:middle}
+.ct{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.cta a{padding:14px 22px;border-radius:12px;font-weight:600;font-size:15px}
+.cta .wa{background:var(--wa);color:#fff}
+.cta .tel{border:1.4px solid var(--ink)}
+#ziyarat,#contact{scroll-margin-top:90px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 footer{padding:50px var(--pad) 40px;border-top:1px solid rgba(27,26,23,.08);display:flex;flex-wrap:wrap;gap:24px 50px;align-items:center;font-size:13.5px;color:var(--muted)}
 footer .logo{color:var(--ink);font-size:22px}
 footer .fl{display:flex;gap:22px}
@@ -276,6 +291,7 @@ footer .copy{flex-basis:100%;font-size:12px;color:var(--light)}
   .pk{margin-top:-8vh;padding-top:120px}
   .grid{grid-template-columns:1fr}
   .inc{grid-template-columns:repeat(2,1fr)}
+  .zy{grid-template-columns:1fr}
 }
 @media (pointer:coarse){.step button,.heart,.calh button{width:44px;height:44px}.chip{padding:12px 18px}}
 @media (prefers-reduced-motion:reduce){.cl.a,.cl.b,.fab::before{animation:none}}
@@ -291,7 +307,7 @@ footer .copy{flex-basis:100%;font-size:12px;color:var(--light)}
   </button>
   <span class="vdiv"></span>
   <span class="small">Pilgrims <svg width="9" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l4 4 4-4"/></svg></span>
-  <div class="links"><a href="#packages">Packages</a><a href="#packages">Ziyarat</a><a href="#contact">Contact Us</a></div>
+  <div class="links"><a href="#packages">Packages</a><a href="#ziyarat">Ziyarat</a><a href="#contact">Contact Us</a></div>
   <div class="right">
     <a class="phone" href="tel:+923001234567">+92 300 1234567</a>
     <svg class="globe" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
@@ -338,11 +354,28 @@ footer .copy{flex-basis:100%;font-size:12px;color:var(--light)}
   <div class="grid" id="grid"></div>
 </main>
 
-<footer id="contact">
+<section class="sec" id="ziyarat">
+  <div class="pkh"><div><span class="ar" lang="ur">زیارات</span><h2 class="serif">Ziyarat Tours</h2></div>
+    <p class="lead">Guided visits to the historic sites of both holy cities, included in every group package.</p></div>
+  <div class="zy">
+    <div class="zc"><span class="zi" data-img="thumb_kaaba" role="img" aria-label="Makkah"></span><div><h3>Makkah</h3>
+      <ul><li>Jabal al-Nour and the Cave of Hira</li><li>Jabal Thawr</li><li>Mina, Muzdalifah and Arafat</li><li>Masjid Aisha (Taneem)</li></ul></div></div>
+    <div class="zc"><span class="zi" data-img="thumb_dome" role="img" aria-label="Madinah"></span><div><h3>Madinah</h3>
+      <ul><li>Masjid Quba</li><li>Mount Uhud and the Martyrs of Uhud</li><li>Masjid al-Qiblatayn</li><li>Jannat al-Baqi</li></ul></div></div>
+  </div>
+</section>
+
+<section class="sec ct" id="contact">
+  <div><span class="ar" lang="ur">رابطہ کریں</span><h2 class="serif">Contact Us</h2>
+    <p class="lead">Offices in Karachi, Lahore and Islamabad. Open daily, 10am to 8pm.</p></div>
+  <div class="cta"><a class="wa" id="ctWa" target="_blank" rel="noopener">Chat on WhatsApp</a><a class="tel" href="tel:+923001234567">Call +92 300 1234567</a></div>
+</section>
+
+<footer>
   <span class="logo"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 27V14a8 8 0 0 1 16 0v13"/><path d="M17.5 8.5a4 4 0 1 1-4-3.6 3.2 3.2 0 1 0 4 3.6z" fill="currentColor" stroke="none"/></svg>Safar-e-Noor</span>
   <span>Karachi · Lahore · Islamabad</span>
   <a href="tel:+923001234567">+92 300 1234567</a>
-  <span class="fl"><a href="#packages">Packages</a><a href="#packages">Ziyarat</a><a href="#contact">Contact</a></span>
+  <span class="fl"><a href="#packages">Packages</a><a href="#ziyarat">Ziyarat</a><a href="#contact">Contact</a></span>
   <span class="copy">© 2026 Safar-e-Noor Travels — prototype. All prices, hotels and contact details are dummy data.</span>
 </footer>
 
@@ -404,7 +437,8 @@ const today = new Date(); today.setHours(0,0,0,0);
 const S = {city:'Karachi', dep:null, ret:null, a:2, c:0, i:0, month:new Date(today.getFullYear(), today.getMonth(), 1)};
 const fmt = d => d.toLocaleDateString('en-US',{month:'short',day:'numeric'});
 if(location.search.includes('rec')) document.body.classList.add('rec');
-$('#fab').href = `https://wa.me/${WA_NUMBER}?text=` + encodeURIComponent("Assalam-o-Alaikum, I'd like to know about your Umrah packages.");
+$$('.zi').forEach(z => bg(z, z.dataset.img));
+$('#fab').href = $('#ctWa').href = `https://wa.me/${WA_NUMBER}?text=` + encodeURIComponent("Assalam-o-Alaikum, I'd like to know about your Umrah packages.");
 
 /* ===== hero slides ===== */
 const stack = $('#stack');
@@ -682,6 +716,7 @@ function closeDetail(){
   detail.classList.remove('open'); detail.setAttribute('aria-hidden','true');
   document.body.style.overflow = ''; onScroll();
 }
+$$('a[href^="#"]').forEach(a => a.addEventListener('click', () => { if(detail.classList.contains('open')) closeDetail(); }));
 $('#logo').onclick = () => { if(detail.classList.contains('open')) closeDetail(); else scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'}); };
 addEventListener('keydown', e => { if(e.key === 'Escape'){ if(detail.classList.contains('open')) closeDetail(); openPop(null); } });
 
