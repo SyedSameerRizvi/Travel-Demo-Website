@@ -16,7 +16,6 @@ The brand, prices, hotels and phone number are all placeholders. The site is a p
 **Hero**
 - Three slides (Makkah, Madinah, the journey) that change on a timer or on click, with a soft wipe and a mist sweep.
 - Slow zoom on each slide, light pointer parallax and a layer of drifting clouds.
-- Short looping clips play only on the slide that is showing.
 
 **Search bar**
 - Departure city (Karachi, Lahore, Islamabad).
@@ -38,21 +37,20 @@ The brand, prices, hotels and phone number are all placeholders. The site is a p
 - Builds a ready-to-send message with the package, city, date, pilgrims and estimated total.
 
 **Imagery**
-- Every image and clip is AI generated and faceless: men in ihram, women in black abaya.
+- Every image is AI generated and faceless: men in ihram, women in black abaya.
 
 ## Performance
 
 The site was built to run smoothly on mid-range phones.
 
 **Load**
-- First load is about 2.5 MB on desktop and 1.6 MB on mobile.
+- First load is under 0.6 MB.
 - The largest image shows in under 1 second on a simulated mid-range phone.
 - No layout shift during slide changes.
 - The only outside request is Google Fonts.
 
 **Images**
 - Converted to WebP and sized per use: 1920 px heroes, 760 px cards, and 1400 px images for the package page.
-- The hero clips are animated WebP and load only after the page has finished loading.
 
 **Battery**
 - The hero animation and the timer pause when the hero is scrolled out of view or a package page is open.
@@ -62,7 +60,7 @@ The site was built to run smoothly on mid-range phones.
 - All buttons and form fields have accessible names.
 - Keyboard focus is visible, and Escape closes the package page.
 - Phone-sized screens get 44 px touch targets.
-- With reduced motion turned on, the clouds, auto slide change and clip playback stop.
+- With reduced motion turned on, the clouds and auto slide change stop.
 
 ## Tech
 
@@ -86,7 +84,7 @@ Opening `index.html` directly from disk also works in most browsers.
 
 ```
 index.html   the whole site: markup, styles, data and scripts
-img/         web-ready images and animated WebP clips
+img/         web-ready WebP images
 docs/        screenshots used in this README
 ```
 
@@ -97,7 +95,7 @@ The editable data sits near the top of the script in `index.html`:
 | Constant | What it controls |
 | --- | --- |
 | `WA_NUMBER` | WhatsApp number in international format without `+` (currently a dummy `923001234567`) |
-| `ASSETS` | Paths for every image and clip. A `*_video` entry accepts an `.mp4` or an animated `.webp`/`.gif` |
+| `ASSETS` | Paths for every image |
 | `PACKAGES` | Name, length, nights per city, hotels, star rating, sharing rates, child and infant prices, departure cities and dates |
 | `SLIDES` | Hero titles, Arabic lines and captions |
 

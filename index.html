@@ -66,7 +66,6 @@ nav.solid .pill .u svg{color:#fff}
 .slide.live,.slide.in{visibility:visible}
 .slide.in{z-index:3}.slide.live{z-index:2}
 .media{position:absolute;inset:-3%;background-size:cover;background-repeat:no-repeat;transform:scale(1.04);will-change:transform}
-.media video{width:100%;height:100%;object-fit:cover}
 .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(70,52,40,.45) 0%,rgba(70,52,40,.08) 26%,transparent 46%);pointer-events:none}
 .title{position:absolute;z-index:2;left:2.6vw;top:calc(74px + 3.2vh);font-weight:700;text-transform:uppercase;line-height:.9;white-space:nowrap;font-size:7.2vw;letter-spacing:-.01em}
 .title.big{left:7vw;top:calc(74px + 5vh);font-size:9.6vw;line-height:.95}
@@ -355,10 +354,10 @@ footer .copy{flex-basis:100%;font-size:12px;color:var(--light)}
 /* ===== Config: the only place to edit ===== */
 const WA_NUMBER = '923001234567';           // dummy: +92 300 1234567
 const ASSETS = {
-  // web-sized copies made from the originals in this folder (img/); *_video takes an .mp4 or an animated image (.webp/.gif)
-  hero_makkah:'img/hero_makkah.webp', hero_makkah_video:'img/hero_makkah_motion.webp',
-  hero_madinah:'img/hero_madinah.webp', hero_madinah_video:'img/hero_madinah_motion.webp',
-  hero_journey:'img/hero_journey.webp', hero_journey_video:'img/hero_journey_motion.webp',
+  // web-sized copies made from the originals in this folder (img/)
+  hero_makkah:'img/hero_makkah.webp',
+  hero_madinah:'img/hero_madinah.webp',
+  hero_journey:'img/hero_journey.webp',
   thumb_kaaba:'img/thumb_kaaba.webp', thumb_dome:'img/thumb_dome.webp', thumb_pilgrims:'img/thumb_pilgrims.webp',
   card_express:'img/card_express.webp', card_classic:'img/card_classic.webp', card_family:'img/hero_journey.webp',
   card_premium:'img/card_premium.webp', card_ramadan:'img/card_ramadan.webp', card_private:'img/hero_madinah.webp',
@@ -413,8 +412,6 @@ SLIDES.forEach((s, k) => {
   const el = document.createElement('div'); el.className = 'slide' + (k === 0 ? ' live' : '');
   const m = bg(document.createElement('div'), s.media); m.className += ' media'; m.style.backgroundPosition = s.pos;
   m.setAttribute('role','img'); m.setAttribute('aria-label', s.h);
-  const v = ASSETS[s.media + '_video'];
-  if(v && /\.mp4$/i.test(v)) m.innerHTML = `<video muted loop playsinline preload="auto" poster="${ASSETS[s.media]}" src="${v}"></video>`;
   const t = document.createElement('h2'); t.className = 'title' + (s.big ? ' big' : '');
   t.innerHTML = `<span class="arl ar" lang="ar"><span>${s.ar}</span></span>` +
     s.words.map(w => `<span class="w"><span>${w}</span></span>`).join(s.big ? '<br>' : ' ');
@@ -423,15 +420,6 @@ SLIDES.forEach((s, k) => {
   el.append(m, t); stack.append(el);
 });
 const slides = $$('.slide'), medias = $$('.media');
-const vid = k => medias[k].querySelector('video');
-vid(0)?.play().catch(()=>{});
-// animated images play only on the slide being shown, so a phone decodes one at a time; the still stays underneath while it loads
-function motion(k, on){
-  const v = ASSETS[SLIDES[k].media + '_video'], still = ASSETS[SLIDES[k].media];
-  if(!v || /\.mp4$/i.test(v) || reduce) return;
-  medias[k].style.backgroundImage = on ? `url("${v}"), url("${still}")` : `url("${still}")`;
-}
-addEventListener('load', () => motion(cur, true));
 $$('.cl').forEach(c => bg(c, 'cloud'));
 
 /* ===== rail ===== */
@@ -473,7 +461,7 @@ function go(n){
   cur = n; layout(); rail.classList.remove('show');
   setTimeout(() => { caption(); rail.classList.add('show'); }, 650);
   slides.forEach((s, k) => s.querySelector('h2').toggleAttribute('aria-hidden', k !== n));
-  inEl.classList.add('in'); vid(n)?.play().catch(()=>{}); motion(n, true);
+  inEl.classList.add('in');
   const D = reduce ? 300 : 1250, t0 = performance.now(), mist = $('#mist');
   (function f(now){
     const t = Math.min(1, (now - t0)/D), p = ease(t), e = p*135;
@@ -486,7 +474,6 @@ function go(n){
     if(t < 1) return requestAnimationFrame(f);
     inEl.style.webkitMaskImage = inEl.style.maskImage = '';
     inEl.classList.replace('in','live'); outEl.classList.remove('live');
-    setTimeout(() => { vid(from)?.pause(); motion(from, false); }, 200);
     liveSince = performance.now(); busy = false; auto();
   })(t0);
 }
