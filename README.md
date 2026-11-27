@@ -44,7 +44,7 @@ The brand, prices, hotels and phone number are all placeholders. The site is a p
 The site was built to run smoothly on mid-range phones.
 
 **Load**
-- First load is under 0.6 MB.
+- First load is under 1 MB.
 - The largest image shows in under 1 second on a simulated mid-range phone.
 - No layout shift during slide changes.
 - The only outside request is Google Fonts.
